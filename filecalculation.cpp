@@ -50,7 +50,5 @@ int FileCalculation::returnElementSize(QFileInfo element)
 
         return elementSize;
     }
-    else {
-        return element.size();
-    }
+    return element.size();
 }
