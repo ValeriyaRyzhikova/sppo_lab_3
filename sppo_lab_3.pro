@@ -10,7 +10,8 @@ CONFIG -= app_bundle
 SOURCES += \
         abstractcalculation.cpp \
         filecalculation.cpp \
-        main.cpp
+        main.cpp \
+        typecalculation.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -19,4 +20,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     abstractcalculation.h \
-    filecalculation.h
+    filecalculation.h \
+    typecalculation.h
