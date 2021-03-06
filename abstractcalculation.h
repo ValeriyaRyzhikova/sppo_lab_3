@@ -10,7 +10,7 @@ class AbstractCalculation
 public:
     AbstractCalculation();
     virtual ~AbstractCalculation();
-    virtual QMap<QString, float> execute(QDir);
+    virtual QMap<QString, float> execute(QDir) = 0;
 
 };
 
