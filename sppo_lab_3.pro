@@ -1,4 +1,4 @@
-QT -= gui
+QT     += core gui widgets
 
 CONFIG += c++1z console
 CONFIG -= app_bundle
@@ -11,6 +11,7 @@ SOURCES += \
         abstractcalculation.cpp \
         filecalculation.cpp \
         main.cpp \
+        mainwindow.cpp \
         typecalculation.cpp
 
 # Default rules for deployment.
@@ -21,4 +22,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     abstractcalculation.h \
     filecalculation.h \
+    mainwindow.h \
     typecalculation.h
+
+FORMS += \
+    mainwindow.ui
