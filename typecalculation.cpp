@@ -4,9 +4,9 @@ TypeCalculation::TypeCalculation(){}
 
 TypeCalculation::~TypeCalculation(){}
 
-int TypeCalculation::calculateMapOfType(QFileInfo element, QMap<QString, float>& map)
+unsigned long long TypeCalculation::calculateMapOfType(QFileInfo element, QMap<QString, float>& map)
 {
-    int elementSize=0;
+    unsigned long long elementSize=0;
     if(element.isDir()){
         QDir dir(element.absoluteFilePath());
         QFileInfoList dirElements = dir.entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries);
@@ -32,7 +32,7 @@ QMap<QString, float> TypeCalculation::execute(QDir dir)
 {
     QMap<QString, float> result;
 
-    int sumSize=calculateMapOfType(QFileInfo(dir.absolutePath()), result);
+    unsigned long long sumSize=calculateMapOfType(QFileInfo(dir.absolutePath()), result);
 
     if(sumSize){
         QMapIterator<QString, float> iter(result);

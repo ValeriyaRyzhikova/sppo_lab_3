@@ -9,7 +9,7 @@
 class TypeCalculation:public AbstractCalculation
 {
 private:
-    int calculateMapOfType(QFileInfo, QMap<QString, float>&);
+    unsigned long long calculateMapOfType(QFileInfo, QMap<QString, float>&);
 public:
     TypeCalculation();
     ~TypeCalculation();

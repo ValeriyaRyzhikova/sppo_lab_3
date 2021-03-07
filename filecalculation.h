@@ -10,7 +10,7 @@
 class FileCalculation:public AbstractCalculation
 {
 private:
-    int returnElementSize(QFileInfo);
+    unsigned long long returnElementSize(QFileInfo);
 public:
     FileCalculation();
     ~FileCalculation();

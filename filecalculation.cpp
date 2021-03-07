@@ -8,8 +8,8 @@ QMap<QString, float> FileCalculation::execute(QDir dir)
 {
     QMap<QString, float> result;
     QFileInfoList dirElements = dir.entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries);
-    int sumSize=0;
-    int elementSize;
+    unsigned long long sumSize=0;
+    unsigned long long elementSize;
     QString elementName;
 
     for(const auto &element: dirElements){
@@ -38,10 +38,10 @@ QMap<QString, float> FileCalculation::execute(QDir dir)
 }
 
 
-int FileCalculation::returnElementSize(QFileInfo element)
+unsigned long long FileCalculation::returnElementSize(QFileInfo element)
 {
     if(element.isDir()){
-        int elementSize=0;
+        unsigned long long elementSize=0;
         QDir dir(element.absoluteFilePath());
         QFileInfoList dirElements = dir.entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries);
 

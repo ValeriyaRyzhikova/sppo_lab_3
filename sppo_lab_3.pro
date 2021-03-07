@@ -9,6 +9,7 @@ CONFIG -= app_bundle
 
 SOURCES += \
         abstractcalculation.cpp \
+        contentfortableview.cpp \
         filecalculation.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -21,6 +22,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     abstractcalculation.h \
+    contentfortableview.h \
     filecalculation.h \
     mainwindow.h \
     typecalculation.h

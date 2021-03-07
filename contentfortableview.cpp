@@ -2,8 +2,10 @@
 
 void ContentForTableView::updateContent(const QMap<QString,float> &m){
     beginRemoveRows(QModelIndex(), 0, elements_.size()-1);
-    elements_ = makeMapToVector(m);
+    elements_ = QVector<QPair<QString,QString>>();
     endRemoveRows();
+    beginInsertRows(QModelIndex(), 0, m.size()-1);
+    elements_ = makeMapToVector(m);
     endInsertRows();
 }
 
@@ -27,17 +29,25 @@ QString ContentForTableView::transleteFloatToQString(float size)
     return QString::number(size, 'f', 2)+"%";
 }
 
-QVariant ContentForTableView::data(const QModelIndex& index, int role) const{
+QVariant ContentForTableView::data(const QModelIndex& index, int role) const
+{
     if (role == Qt::DisplayRole){
         int column = index.column();
         int row = index.row();
 
         if (column == NAME_COLUMN)
             return elements_[row].first;
-        else if (column == SIZE_COLUMN)
+        else{
+            if (column == SIZE_COLUMN)
             return elements_[row].second;
-        else return QVariant();
-    } else return QVariant();
+            else{
+                return QVariant();
+            }
+        }
+    }
+    else{
+        return QVariant();
+    }
 }
 
 QVariant ContentForTableView::headerData(int section, Qt::Orientation orientation, int role) const{
