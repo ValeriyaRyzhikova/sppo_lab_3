@@ -6,20 +6,42 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1166</width>
-    <height>641</height>
+    <width>937</width>
+    <height>576</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="QTreeView" name="treeView"/>
-    </item>
-    <item>
-     <widget class="QTableView" name="tableView"/>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QTreeView" name="treeView"/>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QComboBox" name="comboBox">
+          <item>
+           <property name="text">
+            <string>File</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableView" name="tableView"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -28,7 +50,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1166</width>
+     <width>937</width>
      <height>26</height>
     </rect>
    </property>
@@ -44,8 +66,8 @@
    <slot>changeDir(QModelIndex)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>295</x>
-     <y>320</y>
+     <x>266</x>
+     <y>228</y>
     </hint>
     <hint type="destinationlabel">
      <x>582</x>
@@ -53,8 +75,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>comboBox</sender>
+   <signal>activated(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>redefineStrategy(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>149</x>
+     <y>74</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>468</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>changeDir(QModelIndex)</slot>
+  <slot>redefineStrategy(QString)</slot>
  </slots>
 </ui>
