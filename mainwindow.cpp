@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui_->setupUi(this);
 
     QString homePath = QDir::homePath();
+    currentDir_= QDir("*");
 
     dirModel_ =  new QFileSystemModel(this);
     dirModel_->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
@@ -40,7 +41,8 @@ void MainWindow::changeDir(QModelIndex index)
 
 void MainWindow::updateCurrentDir()
 {
-    contentTable_->updateContent(strategy_->execute(currentDir_));
+    if (currentDir_.exists())
+        contentTable_->updateContent(strategy_->execute(currentDir_));
 }
 
 void MainWindow::setTableView(){
