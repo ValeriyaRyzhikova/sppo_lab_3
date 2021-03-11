@@ -2,4 +2,3 @@
 
 AbstractCalculation::AbstractCalculation(){}
 
-AbstractCalculation::~AbstractCalculation(){}

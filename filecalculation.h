@@ -14,7 +14,8 @@ private:
 public:
     FileCalculation();
     ~FileCalculation();
-    QMap<QString, float> execute(QDir);
+public slots:
+    void execute(QDir);
 };
 
 #endif // FILECALCULATION_H

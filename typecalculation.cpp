@@ -28,7 +28,7 @@ unsigned long long TypeCalculation::calculateMapOfType(QFileInfo element, QMap<Q
     return elementSize;
 }
 
-QMap<QString, float> TypeCalculation::execute(QDir dir)
+void TypeCalculation::execute(QDir dir)
 {
     QMap<QString, float> result;
 
@@ -48,7 +48,7 @@ QMap<QString, float> TypeCalculation::execute(QDir dir)
             result[iter.key()] = 1;
         }
     }
-    return result;
+    emit sentAdapter(result);
 }
 
 

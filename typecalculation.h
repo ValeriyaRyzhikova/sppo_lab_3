@@ -13,7 +13,8 @@ private:
 public:
     TypeCalculation();
     ~TypeCalculation();
-    QMap<QString, float> execute(QDir);
+public slots:
+    void execute(QDir);
 };
 
 #endif // TYPECALCULATION_H

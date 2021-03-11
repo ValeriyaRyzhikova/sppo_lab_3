@@ -4,7 +4,7 @@ FileCalculation::FileCalculation(){}
 
 FileCalculation::~FileCalculation(){}
 
-QMap<QString, float> FileCalculation::execute(QDir dir)
+void FileCalculation::execute(QDir dir)
 {
     QMap<QString, float> result;
     QFileInfoList dirElements = dir.entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries);
@@ -34,7 +34,7 @@ QMap<QString, float> FileCalculation::execute(QDir dir)
         }
     }
 
-    return result;
+    emit sentAdapter(result);
 }
 
 

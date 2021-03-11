@@ -18,17 +18,19 @@ MainWindow::MainWindow(QWidget *parent) :
     for (int i = 1; i < dirModel_->columnCount(); ++i)
     ui_->treeView->hideColumn(i);
 
-    ui_->tableView->verticalHeader()->setVisible(false);
     strategy_ = new FileCalculation();
-    contentTable_ = new ContentForTableView();
-    setTableView();
+    adapter_=new TableAdapter();
+    QObject::connect(strategy_, &AbstractCalculation::sentAdapter,
+                     adapter_, &AbstractAdapter::updateAdapter);
+
+    QObject::connect(adapter_, &AbstractAdapter::sentMainwindow,
+                     this, &MainWindow::fillWidget);
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui_;
-    delete contentTable_;
     delete strategy_;
     delete dirModel_;
 }
@@ -42,13 +44,7 @@ void MainWindow::changeDir(QModelIndex index)
 void MainWindow::updateCurrentDir()
 {
     if (currentDir_.exists())
-        contentTable_->updateContent(strategy_->execute(currentDir_));
-}
-
-void MainWindow::setTableView(){
-    ui_->tableView->setModel(contentTable_);
-    ui_->tableView->setColumnWidth(0,380);
-    ui_->tableView->setColumnWidth(1,70);
+        strategy_->execute(currentDir_);
 }
 
 void MainWindow::redefineStrategy(QString strategy)
@@ -60,4 +56,10 @@ void MainWindow::redefineStrategy(QString strategy)
         strategy_ = new FileCalculation();
     }
     updateCurrentDir();
+}
+
+void MainWindow::fillWidget(QWidget *widget)
+{
+    //ui_->widget=widget;
+    ui_->layoutForWidget->replaceWidget(ui_->widget, widget);
 }

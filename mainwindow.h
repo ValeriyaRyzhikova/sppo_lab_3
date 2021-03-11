@@ -8,6 +8,8 @@
 #include "filecalculation.h"
 #include "typecalculation.h"
 #include "contentfortableview.h"
+#include "abstractadapter.h"
+#include "tableadapter.h"
 
 
 namespace Ui {
@@ -23,8 +25,7 @@ private:
     Ui::MainWindow *ui_;
     QFileSystemModel *dirModel_;
     AbstractCalculation *strategy_;
-    ContentForTableView *contentTable_;
-    void setTableView();
+    AbstractAdapter *adapter_;
     void updateCurrentDir();
 
 public:
@@ -32,6 +33,8 @@ public:
     ~MainWindow();
 
 public slots:
+    void fillWidget(QWidget *);
+
     void changeDir(QModelIndex);
     void redefineStrategy(QString);
 };

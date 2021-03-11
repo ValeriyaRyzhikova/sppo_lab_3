@@ -5,13 +5,16 @@
 #include <QDir>
 
 
-class AbstractCalculation
+class AbstractCalculation: public QObject
 {
+    Q_OBJECT
+
 public:
     AbstractCalculation();
-    virtual ~AbstractCalculation();
-    virtual QMap<QString, float> execute(QDir) = 0;
-
+public slots:
+    virtual void execute(QDir) = 0;
+signals:
+    void sentAdapter(QMap<QString, float>);
 };
 
 #endif // ABSTRACTCALCULATION_H
