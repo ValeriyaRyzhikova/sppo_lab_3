@@ -11,6 +11,7 @@ class TableAdapter:public AbstractAdapter
 private:
     QTableView *view;
     ContentForTableView *model;
+    QVector<QPair<QString,QString>> makeMapToVector(const QMap<QString, float> &);
 public:
     TableAdapter();
     ~TableAdapter();

@@ -1,33 +1,14 @@
 #include "contentfortableview.h"
 
-void ContentForTableView::updateContent(const QMap<QString,float> &m){
+void ContentForTableView::updateContent(const QVector<QPair<QString,QString>> &f){
     beginRemoveRows(QModelIndex(), 0, elements_.size()-1);
     elements_ = QVector<QPair<QString,QString>>();
     endRemoveRows();
-    beginInsertRows(QModelIndex(), 0, m.size()-1);
-    elements_ = makeMapToVector(m);
+    beginInsertRows(QModelIndex(), 0, f.size()-1);
+    elements_ = f;
     endInsertRows();
 }
 
-
-QVector<QPair<QString,QString>> ContentForTableView::makeMapToVector(const QMap<QString, float> &m)
-{
-    QVector<QPair<QString,QString>> result;
-    QMapIterator<QString, float> iter(m);
-    while (iter.hasNext()) {
-        iter.next();
-        result.push_back(QPair(iter.key(),transleteFloatToQString(iter.value())));
-    }
-    return result;
-}
-
-QString ContentForTableView::transleteFloatToQString(float size)
-{
-    size*=100;
-    if (size < 0.01 && size!=0)
-        return"<0.01%";
-    return QString::number(size, 'f', 2)+"%";
-}
 
 QVariant ContentForTableView::data(const QModelIndex& index, int role) const
 {

@@ -21,7 +21,21 @@
     <item>
      <layout class="QVBoxLayout" name="layoutForWidget">
       <item>
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="comboBoxAdapter">
+        <item>
+         <property name="text">
+          <string>Table</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Pie</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxStrategy">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -78,7 +92,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>comboBox</sender>
+   <sender>comboBoxStrategy</sender>
    <signal>activated(QString)</signal>
    <receiver>MainWindow</receiver>
    <slot>redefineStrategy(QString)</slot>
@@ -93,9 +107,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>comboBoxAdapter</sender>
+   <signal>activated(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>redefineAdapter(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>698</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>468</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>changeDir(QModelIndex)</slot>
   <slot>redefineStrategy(QString)</slot>
+  <slot>redefineAdapter(QString)</slot>
  </slots>
 </ui>

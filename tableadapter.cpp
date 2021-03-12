@@ -14,9 +14,19 @@ TableAdapter::~TableAdapter()
     delete model;
 }
 
-void TableAdapter::updateAdapter(QMap<QString, float> map)
+void TableAdapter::updateAdapter(QMap<QString, float> data)
 {
-    model->updateContent(map);
+    model->updateContent(makeMapToVector(data));
     emit sentMainwindow(view);
 }
 
+QVector<QPair<QString,QString>> TableAdapter::makeMapToVector(const QMap<QString, float> &m)
+{
+    QVector<QPair<QString,QString>> result;
+    QMapIterator<QString, float> iter(m);
+    while (iter.hasNext()) {
+        iter.next();
+        result.push_back(QPair(iter.key(),transleteFloatToQString(iter.value())));
+    }
+    return result;
+}

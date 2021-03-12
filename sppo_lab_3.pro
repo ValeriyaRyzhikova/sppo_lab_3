@@ -1,6 +1,6 @@
-QT     += core gui widgets
+QT     += core gui widgets charts
 
-CONFIG += c++1z console
+CONFIG += c++1z charts
 CONFIG -= app_bundle
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -10,10 +10,12 @@ CONFIG -= app_bundle
 SOURCES += \
         abstractadapter.cpp \
         abstractcalculation.cpp \
+        abstractchartadapter.cpp \
         contentfortableview.cpp \
         filecalculation.cpp \
         main.cpp \
         mainwindow.cpp \
+        piechartadapter.cpp \
         tableadapter.cpp \
         typecalculation.cpp
 
@@ -25,9 +27,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     abstractadapter.h \
     abstractcalculation.h \
+    abstractchartadapter.h \
     contentfortableview.h \
     filecalculation.h \
     mainwindow.h \
+    piechartadapter.h \
     tableadapter.h \
     typecalculation.h
 

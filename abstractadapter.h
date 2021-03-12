@@ -8,9 +8,11 @@
 class AbstractAdapter: public QObject
 {
     Q_OBJECT
-
+protected:
+    QString transleteFloatToQString(float);
 public:
     AbstractAdapter();
+    virtual ~AbstractAdapter();
 public slots:
     virtual void updateAdapter(QMap<QString,float>)=0;
 signals:

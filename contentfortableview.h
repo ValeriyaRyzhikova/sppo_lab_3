@@ -15,15 +15,13 @@ private:
         NUMBER_OF_COLUMNS
     };
     QVector<QPair<QString,QString>> elements_;
-    QVector<QPair<QString,QString>> makeMapToVector(const QMap<QString, float> &);
-    QString transleteFloatToQString(float);
 public:
     ContentForTableView(){};
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
     int columnCount(const QModelIndex& parent = QModelIndex()) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-    void updateContent(const QMap<QString, float> &);
+    void updateContent(const QVector<QPair<QString,QString>> &);
 };
 
 #endif // CONTENTFORTABLEVIEW_H
