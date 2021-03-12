@@ -1,6 +1,6 @@
-#include "contentfortableview.h"
+#include "contentfortable.h"
 
-void ContentForTableView::updateContent(const QVector<QPair<QString,QString>> &f){
+void ContentForTable::updateContent(const QVector<QPair<QString,QString>> &f){
     beginRemoveRows(QModelIndex(), 0, elements_.size()-1);
     elements_ = QVector<QPair<QString,QString>>();
     endRemoveRows();
@@ -10,7 +10,7 @@ void ContentForTableView::updateContent(const QVector<QPair<QString,QString>> &f
 }
 
 
-QVariant ContentForTableView::data(const QModelIndex& index, int role) const
+QVariant ContentForTable::data(const QModelIndex& index, int role) const
 {
     if (role == Qt::DisplayRole){
         int column = index.column();
@@ -31,7 +31,7 @@ QVariant ContentForTableView::data(const QModelIndex& index, int role) const
     }
 }
 
-QVariant ContentForTableView::headerData(int section, Qt::Orientation orientation, int role) const{
+QVariant ContentForTable::headerData(int section, Qt::Orientation orientation, int role) const{
     if (role == Qt::DisplayRole){
         if (Qt::Vertical == orientation)
             return section;
@@ -58,10 +58,10 @@ QVariant ContentForTableView::headerData(int section, Qt::Orientation orientatio
     }
 }
 
-int ContentForTableView::rowCount(const QModelIndex&) const{
+int ContentForTable::rowCount(const QModelIndex&) const{
     return elements_.size();
 }
 
-int ContentForTableView::columnCount(const QModelIndex&) const{
+int ContentForTable::columnCount(const QModelIndex&) const{
     return NUMBER_OF_COLUMNS;
 }

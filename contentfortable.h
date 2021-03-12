@@ -6,7 +6,7 @@
 #include <QVariant>
 #include <QAbstractTableModel>
 
-class ContentForTableView: public QAbstractTableModel
+class ContentForTable: public QAbstractTableModel
 {
 private:
     enum COLUMNS{
@@ -16,7 +16,7 @@ private:
     };
     QVector<QPair<QString,QString>> elements_;
 public:
-    ContentForTableView(){};
+    ContentForTable(){};
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
     int columnCount(const QModelIndex& parent = QModelIndex()) const;

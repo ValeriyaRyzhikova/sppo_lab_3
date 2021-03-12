@@ -7,7 +7,7 @@
 #include "abstractcalculation.h"
 #include "filecalculation.h"
 #include "typecalculation.h"
-#include "contentfortableview.h"
+#include "contentfortable.h"
 #include "abstractadapter.h"
 #include "tableadapter.h"
 #include "abstractchartadapter.h"

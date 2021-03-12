@@ -2,7 +2,7 @@
 
 TableAdapter::TableAdapter()
 {
-    model = new ContentForTableView();
+    model = new ContentForTable();
     view = new QTableView();
     view->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     view->setModel(model);

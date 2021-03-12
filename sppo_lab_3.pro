@@ -12,7 +12,7 @@ SOURCES += \
         abstractcalculation.cpp \
         abstractchartadapter.cpp \
         barchartadapter.cpp \
-        contentfortableview.cpp \
+        contentfortable.cpp \
         filecalculation.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -30,7 +30,7 @@ HEADERS += \
     abstractcalculation.h \
     abstractchartadapter.h \
     barchartadapter.h \
-    contentfortableview.h \
+    contentfortable.h \
     filecalculation.h \
     mainwindow.h \
     piechartadapter.h \
