@@ -32,6 +32,11 @@
           <string>Pie</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Bar</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>

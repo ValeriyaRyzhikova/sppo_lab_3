@@ -11,6 +11,7 @@ SOURCES += \
         abstractadapter.cpp \
         abstractcalculation.cpp \
         abstractchartadapter.cpp \
+        barchartadapter.cpp \
         contentfortableview.cpp \
         filecalculation.cpp \
         main.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     abstractadapter.h \
     abstractcalculation.h \
     abstractchartadapter.h \
+    barchartadapter.h \
     contentfortableview.h \
     filecalculation.h \
     mainwindow.h \

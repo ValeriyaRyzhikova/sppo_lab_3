@@ -12,6 +12,7 @@
 #include "tableadapter.h"
 #include "abstractchartadapter.h"
 #include "piechartadapter.h"
+#include "barchartadapter.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +26,7 @@ private:
     enum ADAPTER{
         TABLE,
         PIE,
+        BAR,
         SIZE_ADAPTER
     };
     enum STRATEGY{
@@ -34,13 +36,13 @@ private:
     };
 
     QDir currentDir_;
-    int currentStategy;
-    int currentAdapter;
+    int currentStategy_;
+    int currentAdapter_;
     Ui::MainWindow *ui_;
     QFileSystemModel *dirModel_;
     AbstractCalculation **strategies_;
     AbstractAdapter **adapters_;
-    QWidget* bufferWidget;
+    QWidget* bufferWidget_;
     void updateCurrentDir();
     void createStrategy();
     void createAdapters();

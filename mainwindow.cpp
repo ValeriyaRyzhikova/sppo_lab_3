@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui_(new Ui::MainWindow)
 {
     ui_->setupUi(this);
-    bufferWidget = ui_->widget;
+    bufferWidget_ = ui_->widget;
     QString homePath = QDir::homePath();
     currentDir_= QDir("*");
 
@@ -18,8 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     for (int i = 1; i < dirModel_->columnCount(); ++i)
     ui_->treeView->hideColumn(i);
 
-    currentStategy=FILE;
-    currentAdapter=TABLE;
+    currentStategy_=FILE;
+    currentAdapter_=TABLE;
 
     createStrategy();
     createAdapters();
@@ -39,14 +39,15 @@ void MainWindow::createAdapters()
     adapters_ = new AbstractAdapter*[SIZE_ADAPTER];
     adapters_ [TABLE]=new TableAdapter();
     adapters_ [PIE]=new PieChartAdapter();
+    adapters_ [BAR]=new BarChartAdapter();
 }
 
 void MainWindow::connectStategyAdapter()
 {
     for(int j=0; j<SIZE_STRATEGY; j++)
         QObject::connect(strategies_[j], &AbstractCalculation::sentAdapter,
-                     adapters_[currentAdapter], &AbstractAdapter::updateAdapter);
-    QObject::connect(adapters_[currentAdapter], &AbstractAdapter::sentMainwindow,
+                     adapters_[currentAdapter_], &AbstractAdapter::updateAdapter);
+    QObject::connect(adapters_[currentAdapter_], &AbstractAdapter::sentMainwindow,
                      this, &MainWindow::fillWidget);
 
 }
@@ -55,8 +56,8 @@ void MainWindow::disconnectStategyAdapter()
 {
     for(int j=0; j<SIZE_STRATEGY; j++)
         QObject::disconnect(strategies_[j], &AbstractCalculation::sentAdapter,
-                     adapters_[currentAdapter], &AbstractAdapter::updateAdapter);
-    QObject::disconnect(adapters_[currentAdapter], &AbstractAdapter::sentMainwindow,
+                     adapters_[currentAdapter_], &AbstractAdapter::updateAdapter);
+    QObject::disconnect(adapters_[currentAdapter_], &AbstractAdapter::sentMainwindow,
                      this, &MainWindow::fillWidget);
 
 }
@@ -66,7 +67,7 @@ MainWindow::~MainWindow()
 {
     delete ui_;
     delete dirModel_;
-    delete bufferWidget;
+    delete bufferWidget_;
 
     for(int i=0; i<SIZE_ADAPTER; i++)
         delete adapters_[i];
@@ -86,15 +87,15 @@ void MainWindow::changeDir(QModelIndex index)
 void MainWindow::updateCurrentDir()
 {
     if (currentDir_.exists())
-        strategies_[currentStategy]->execute(currentDir_);
+        strategies_[currentStategy_]->execute(currentDir_);
 }
 
 void MainWindow::redefineStrategy(QString strategy)
 {
     if (strategy=="Type")
-        currentStategy=TYPE;
+        currentStategy_=TYPE;
     else{
-        currentStategy=FILE;
+        currentStategy_=FILE;
     }
     updateCurrentDir();
 }
@@ -103,9 +104,12 @@ void MainWindow::redefineAdapter(QString adapter)
 {
     disconnectStategyAdapter();
     if (adapter=="Table")
-        currentAdapter=TABLE;
-    else{
-        currentAdapter=PIE;
+        currentAdapter_=TABLE;
+    else if (adapter=="Bar"){
+        currentAdapter_=BAR;
+    }
+    else if (adapter=="Pie"){
+        currentAdapter_=PIE;
     }
     connectStategyAdapter();
     updateCurrentDir();
@@ -113,20 +117,10 @@ void MainWindow::redefineAdapter(QString adapter)
 
 void MainWindow::fillWidget(QWidget *widget)
 {
-    //ui_->layoutForWidget->update();
-
-    //ui_->layoutForWidget->removeWidget(ui_->widget);
-    //ui_->layoutForWidget->addWidget(widget);
-    if (bufferWidget != widget){
-        QLayoutItem *temp = ui_->layoutForWidget->replaceWidget(bufferWidget, widget);
-        //temp->layout()->removeWidget(bufferWidget);//temp->setGeometry(QRect(2000,2000,0,0));
-        bufferWidget->setParent(NULL);
-        bufferWidget = widget;
+    if (bufferWidget_ != widget){
+        QLayoutItem *temp = ui_->layoutForWidget->replaceWidget(bufferWidget_, widget);
+        bufferWidget_->setParent(NULL);
+        bufferWidget_ = widget;
         delete temp;
     }
-    //ui_->layoutForWidget->replaceWidget(firstWidget, widget);
-    //ui_->layoutForWidget->update();
-    //ui_->layoutForWidget->replaceWidget(firstWidget, widget);
-    //ui_->layoutForWidget->replaceWidget(ui_->widget, 0);
-    //ui_->layoutForWidget->update();
 }

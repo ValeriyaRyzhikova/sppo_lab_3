@@ -13,7 +13,7 @@
 
 class AbstractChartAdapter : public AbstractAdapter
 {
-private:
+protected:
     QtCharts::QChart *model;
     QtCharts::QChartView *view;
     virtual QtCharts::QAbstractSeries* putDataInSeries(const QVector<QPair<QString,float>> &)=0;
