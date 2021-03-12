@@ -1,11 +1,6 @@
 #include "barchartadapter.h"
 
-BarChartAdapter::BarChartAdapter()
-{
-    axisY = new QtCharts::QValueAxis();
-    axisY->setRange(0,100);
-    model->addAxis(axisY, Qt::AlignLeft);
-}
+BarChartAdapter::BarChartAdapter(){}
 
 BarChartAdapter::~BarChartAdapter(){}
 
