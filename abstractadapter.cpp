@@ -10,3 +10,9 @@ QString AbstractAdapter::transleteFloatToQString(float size)
         return"<0.01%";
     return QString::number(size, 'f', 2)+"%";
 }
+
+
+ QWidget * AbstractAdapter::giveWidget()
+{
+    return widget_;
+}

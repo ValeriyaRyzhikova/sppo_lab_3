@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     createStrategy();
     createAdapters();
     connectStategyAdapter();
-
+    fillWidget();
 }
 
 void MainWindow::createStrategy()
@@ -45,12 +45,9 @@ void MainWindow::createAdapters()
 
 void MainWindow::connectStategyAdapter()
 {
-    for(int j=0; j<SIZE_STRATEGY; j++)
-        QObject::connect(strategies_[j], &AbstractCalculation::sentAdapter,
-                     adapters_[currentAdapter_], &AbstractAdapter::updateAdapter);
-    QObject::connect(adapters_[currentAdapter_], &AbstractAdapter::sentMainwindow,
-                     this, &MainWindow::fillWidget);
-
+        for(int j=0; j<SIZE_STRATEGY; j++)
+            QObject::connect(strategies_[j], &AbstractCalculation::sentAdapter,
+                         adapters_[currentAdapter_], &AbstractAdapter::updateAdapter);
 }
 
 void MainWindow::disconnectStategyAdapter()
@@ -58,9 +55,6 @@ void MainWindow::disconnectStategyAdapter()
     for(int j=0; j<SIZE_STRATEGY; j++)
         QObject::disconnect(strategies_[j], &AbstractCalculation::sentAdapter,
                      adapters_[currentAdapter_], &AbstractAdapter::updateAdapter);
-    QObject::disconnect(adapters_[currentAdapter_], &AbstractAdapter::sentMainwindow,
-                     this, &MainWindow::fillWidget);
-
 }
 
 
@@ -114,14 +108,14 @@ void MainWindow::redefineAdapter(QString adapter)
     }
     connectStategyAdapter();
     strategies_[currentStategy_]->bringUpSentAdapter();
+    fillWidget();
 }
 
-void MainWindow::fillWidget(QWidget *widget)
+void MainWindow::fillWidget()
 {
-    if (bufferWidget_ != widget){
-        QLayoutItem *temp = ui_->layoutForWidget->replaceWidget(bufferWidget_, widget);
-        bufferWidget_->setParent(NULL);
-        bufferWidget_ = widget;
-        delete temp;
-    }
+    QWidget* widget=adapters_[currentAdapter_]->giveWidget();
+    QLayoutItem *temp = ui_->layoutForWidget->replaceWidget(bufferWidget_, widget);
+    bufferWidget_->setParent(NULL);
+    bufferWidget_ = widget;
+    delete temp;
 }

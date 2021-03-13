@@ -14,8 +14,8 @@
 class AbstractChartAdapter : public AbstractAdapter
 {
 protected:
-    QtCharts::QChart *model;
-    QtCharts::QChartView *view;
+    QtCharts::QChart *model_;
+    QtCharts::QChartView *view_;
     virtual QtCharts::QAbstractSeries* putDataInSeries(const QVector<QPair<QString,float>> &)=0;
     void showLegend();
     QVector<QPair<QString,float>> makeMapToVector(const QMap<QString, float> &);

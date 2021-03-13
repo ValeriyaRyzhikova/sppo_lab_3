@@ -49,12 +49,12 @@ private:
     void createAdapters();
     void connectStategyAdapter();
     void disconnectStategyAdapter();
+    void fillWidget();
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:
-    void fillWidget(QWidget *);
 
     void changeDir(QModelIndex);
     void redefineStrategy(QString);

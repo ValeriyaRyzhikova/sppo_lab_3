@@ -2,31 +2,31 @@
 
 AbstractChartAdapter::AbstractChartAdapter()
 {
-    view = new QtCharts::QChartView();
-    model = new QtCharts::QChart();
-    view->setRenderHint(QPainter::Antialiasing);
-    view->setChart(model);
+    view_ = new QtCharts::QChartView();
+    widget_=view_;
+    model_ = new QtCharts::QChart();
+    view_->setRenderHint(QPainter::Antialiasing);
+    view_->setChart(model_);
     showLegend();
 }
 
 AbstractChartAdapter::~AbstractChartAdapter()
 {
-    delete view;
+    delete view_;
     //delete model; - модель не нужно удалять т.к. QChartView - родительский класс QChart
 }
 
 void AbstractChartAdapter::updateAdapter(QMap<QString,float> m)
 {
-    model->removeAllSeries();
-    model->addSeries(putDataInSeries(makeMapToVector(m)));
-    model->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
-    emit sentMainwindow(view);
+    model_->removeAllSeries();
+    model_->addSeries(putDataInSeries(makeMapToVector(m)));
+    model_->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
 }
 
 void AbstractChartAdapter::showLegend()
 {
-    model->legend()->setVisible(true);
-    model->legend()->setAlignment(Qt::AlignRight);
+    model_->legend()->setVisible(true);
+    model_->legend()->setAlignment(Qt::AlignRight);
 }
 
 QVector<QPair<QString,float>> AbstractChartAdapter::makeMapToVector(const QMap<QString, float> &m)

@@ -2,22 +2,22 @@
 
 TableAdapter::TableAdapter()
 {
-    model = new ContentForTable();
-    view = new QTableView();
-    view->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    view->setModel(model);
+    model_ = new ContentForTable();
+    view_ = new QTableView();
+    widget_=view_;
+    view_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    view_->setModel(model_);
 }
 
 TableAdapter::~TableAdapter()
 {
-    delete view;
-    delete model;
+    delete view_;
+    delete model_;
 }
 
 void TableAdapter::updateAdapter(QMap<QString, float> data)
 {
-    model->updateContent(makeMapToVector(data));
-    emit sentMainwindow(view);
+    model_->updateContent(makeMapToVector(data));
 }
 
 QVector<QPair<QString,QString>> TableAdapter::makeMapToVector(const QMap<QString, float> &m)
