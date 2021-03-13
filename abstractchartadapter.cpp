@@ -12,7 +12,7 @@ AbstractChartAdapter::AbstractChartAdapter()
 AbstractChartAdapter::~AbstractChartAdapter()
 {
     delete view;
-    delete model;
+    //delete model; - модель не нужно удалять т.к. QChartView - родительский класс QChart
 }
 
 void AbstractChartAdapter::updateAdapter(QMap<QString,float> m)

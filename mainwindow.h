@@ -42,7 +42,8 @@ private:
     QFileSystemModel *dirModel_;
     AbstractCalculation **strategies_;
     AbstractAdapter **adapters_;
-    QWidget* bufferWidget_;
+    QWidget *bufferWidget_;
+    QWidget *firstWidget_;
     void updateCurrentDir();
     void createStrategy();
     void createAdapters();

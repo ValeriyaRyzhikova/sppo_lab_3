@@ -21,7 +21,7 @@ protected:
     QVector<QPair<QString,float>> makeMapToVector(const QMap<QString, float> &);
 public:
     AbstractChartAdapter();
-    virtual ~AbstractChartAdapter();
+    ~AbstractChartAdapter();
 public slots:
     void updateAdapter(QMap<QString,float>);
 };

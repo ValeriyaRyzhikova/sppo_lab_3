@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui_->setupUi(this);
     bufferWidget_ = ui_->widget;
+    firstWidget_ = ui_->widget;
     QString homePath = QDir::homePath();
     currentDir_= QDir("*");
 
