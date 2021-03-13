@@ -8,9 +8,11 @@
 class AbstractCalculation: public QObject
 {
     Q_OBJECT
-
+protected:
+    QMap<QString, float> previousCalculation_;
 public:
     AbstractCalculation();
+    void bringUpSentAdapter();
 public slots:
     virtual void execute(QDir) = 0;
 signals:

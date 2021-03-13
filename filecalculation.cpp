@@ -33,8 +33,8 @@ void FileCalculation::execute(QDir dir)
             result[iter.key()] = 1;
         }
     }
-
-    emit sentAdapter(result);
+    previousCalculation_=result;
+    bringUpSentAdapter();
 }
 
 

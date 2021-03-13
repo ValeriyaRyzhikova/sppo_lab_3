@@ -113,7 +113,7 @@ void MainWindow::redefineAdapter(QString adapter)
         currentAdapter_=PIE;
     }
     connectStategyAdapter();
-    updateCurrentDir();
+    strategies_[currentStategy_]->bringUpSentAdapter();
 }
 
 void MainWindow::fillWidget(QWidget *widget)
