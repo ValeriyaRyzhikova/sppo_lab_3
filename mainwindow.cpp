@@ -68,7 +68,7 @@ MainWindow::~MainWindow()
 {
     delete ui_;
     delete dirModel_;
-    delete bufferWidget_;
+    delete firstWidget_;
 
     for(int i=0; i<SIZE_ADAPTER; i++)
         delete adapters_[i];
